@@ -35,7 +35,9 @@ This project was built by Alejandro López and Hugo Bayona.
 
 ### How to compile
 
-`make`
+`$ git clone https://github.com/alejolo311/shell_v2.git`
+`$ cd shell_v2`
+`$ make`
 
 ## Explanation
 
@@ -52,3 +54,5 @@ the program is execute and the prompt is print, and wait for the user.
 
 `$ ./hsh`
 `($)`
+`($) ls > output_file`
+`($) cat output_file`
