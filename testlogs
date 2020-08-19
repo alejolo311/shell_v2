@@ -1,0 +1,88 @@
+find . -name *.o -delete
+rm -f hsh
+Sending build context to Docker daemon  491.5kB
+Step 1/4 : FROM alejolo311/hsh-enviroment
+ ---> b7569c947f6d
+Step 2/4 : WORKDIR /shell_v2
+ ---> Using cache
+ ---> 5591b784ed0e
+Step 3/4 : COPY . .
+ ---> 702df7574ef4
+Step 4/4 : RUN make
+ ---> Running in 4ef2a2c24f52
+gcc -c -ggdb3 -I headers  src/interact.c -o obj/./src/interact.o
+gcc -c -ggdb3 -I headers  src/path.c -o obj/./src/path.o
+gcc -c -ggdb3 -I headers  src/main.c -o obj/./src/main.o
+gcc -c -ggdb3 -I headers  src/myexec.c -o obj/./src/myexec.o
+gcc -c -ggdb3 -I headers  lib/validations/check_builtin.c -o obj/./lib/validations/check_builtin.o
+gcc -c -ggdb3 -I headers  lib/validations/error_handler.c -o obj/./lib/validations/error_handler.o
+gcc -c -ggdb3 -I headers  lib/validations/handsigint.c -o obj/./lib/validations/handsigint.o
+gcc -c -ggdb3 -I headers  lib/validations/ps1.c -o obj/./lib/validations/ps1.o
+gcc -c -ggdb3 -I headers  lib/validations/inputfile.c -o obj/./lib/validations/inputfile.o
+gcc -c -ggdb3 -I headers  lib/validations/check_variables.c -o obj/./lib/validations/check_variables.o
+gcc -c -ggdb3 -I headers  lib/validations/alias.c -o obj/./lib/validations/alias.o
+gcc -c -ggdb3 -I headers  lib/env/_env.c -o obj/./lib/env/_env.o
+gcc -c -ggdb3 -I headers  lib/env/env_funcs.c -o obj/./lib/env/env_funcs.o
+gcc -c -ggdb3 -I headers  lib/env/_setenv.c -o obj/./lib/env/_setenv.o
+gcc -c -ggdb3 -I headers  lib/env/_getenv.c -o obj/./lib/env/_getenv.o
+gcc -c -ggdb3 -I headers  lib/env/_unsetenv.c -o obj/./lib/env/_unsetenv.o
+gcc -c -ggdb3 -I headers  lib/help/_help.c -o obj/./lib/help/_help.o
+gcc -c -ggdb3 -I headers  lib/help/_hlpcd.c -o obj/./lib/help/_hlpcd.o
+gcc -c -ggdb3 -I headers  lib/help/_hlpexit.c -o obj/./lib/help/_hlpexit.o
+gcc -c -ggdb3 -I headers  lib/help/_hlphelp.c -o obj/./lib/help/_hlphelp.o
+gcc -c -ggdb3 -I headers  lib/help/_hlphistory.c -o obj/./lib/help/_hlphistory.o
+gcc -c -ggdb3 -I headers  lib/history/_history.c -o obj/./lib/history/_history.o
+gcc -c -ggdb3 -I headers  lib/history/loadhist.c -o obj/./lib/history/loadhist.o
+gcc -c -ggdb3 -I headers  lib/history/currhist.c -o obj/./lib/history/currhist.o
+gcc -c -ggdb3 -I headers  lib/history/savehist.c -o obj/./lib/history/savehist.o
+gcc -c -ggdb3 -I headers  lib/history/sizehist.c -o obj/./lib/history/sizehist.o
+gcc -c -ggdb3 -I headers  lib/history/addhist.c -o obj/./lib/history/addhist.o
+gcc -c -ggdb3 -I headers  lib/exit/_exit.c -o obj/./lib/exit/_exit.o
+gcc -c -ggdb3 -I headers  lib/cd/_cd.c -o obj/./lib/cd/_cd.o
+gcc -c -ggdb3 -I headers  utils/lists/lists.c -o obj/./utils/lists/lists.o
+gcc -c -ggdb3 -I headers  utils/numbers/intfuncs.c -o obj/./utils/numbers/intfuncs.o
+gcc -c -ggdb3 -I headers  utils/strings/string_funcs.c -o obj/./utils/strings/string_funcs.o
+gcc obj/./src/interact.o obj/./src/path.o obj/./src/main.o obj/./src/myexec.o obj/./lib/validations/check_builtin.o obj/./lib/validations/error_handler.o obj/./lib/validations/handsigint.o obj/./lib/validations/ps1.o obj/./lib/validations/inputfile.o obj/./lib/validations/check_variables.o obj/./lib/validations/alias.o obj/./lib/env/_env.o obj/./lib/env/env_funcs.o obj/./lib/env/_setenv.o obj/./lib/env/_getenv.o obj/./lib/env/_unsetenv.o obj/./lib/help/_help.o obj/./lib/help/_hlpcd.o obj/./lib/help/_hlpexit.o obj/./lib/help/_hlphelp.o obj/./lib/help/_hlphistory.o obj/./lib/history/_history.o obj/./lib/history/loadhist.o obj/./lib/history/currhist.o obj/./lib/history/savehist.o obj/./lib/history/sizehist.o obj/./lib/history/addhist.o obj/./lib/exit/_exit.o obj/./lib/cd/_cd.o obj/./utils/lists/lists.o obj/./utils/numbers/intfuncs.o obj/./utils/strings/string_funcs.o -ggdb3  -o hsh
+Removing intermediate container 4ef2a2c24f52
+ ---> 7bdf1084c020
+Successfully built 7bdf1084c020
+Successfully tagged hsh:latest
+
+Execute env
+(command)[echo "env" | ./hsh]
+
+[GOT]:
+(stdout)[HOSTNAME=eb846c3525d2
+TERM=xterm
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+PWD=/shell_v2
+HOME=/root
+SHLVL=2
+](Length: 132)
+(stderr)[](Length: 0)
+(status)[0]
+
+[EXPECTED]:
+(stdout)[HOSTNAME=eb846c3525d2
+SHLVL=2
+HOME=/root
+TERM=xterm
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+PWD=/shell_v2
+](Length: 132)
+(stderr)[](Length: 0)
+(status)[0]
+
+Environment:
+HOSTNAME=eb846c3525d2
+TERM=xterm
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+PWD=/shell_v2
+HOME=/root
+SHLVL=2
+_=/usr/bin/env
+
+Remove all environment variables, except one, and execute env
+OK
+Remove all environment variables and execute env
+OK
