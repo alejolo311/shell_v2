@@ -14,9 +14,11 @@ char **askmem(int argc, char *line);
  */
 int interact(char **av, lenv_s **lenv, unsigned int *execnt)
 {
-size_t len = 0;
-int read = 1, j, argc = 0, inter = 1, (*f)() = NULL, builtin, ret = 0, mul = 0;
-char *str1, *t, **argv, *line = NULL, *tmp = NULL, *myline = NULL, *PS1 = NULL;
+	size_t len = 0;
+	int read = 1, j, argc = 0, inter = 1, (*f)() = NULL;
+	int builtin, ret = 0, mul = 0;
+	char *str1, *t, **argv, *line = NULL;
+	char *tmp = NULL, *myline = NULL, *PS1 = NULL;
 
 	isatty(STDIN_FILENO) == 0 ? inter = 0 : inter;
 	get_ps1(&PS1, lenv);
@@ -32,7 +34,9 @@ char *str1, *t, **argv, *line = NULL, *tmp = NULL, *myline = NULL, *PS1 = NULL;
 		}
 		myline = _strdup(line);
 		tmp = _strdup(myline);
-		for (argc = 1, str1 = tmp; (t = strtok(str1, " \t\n")); argc++, str1 = NULL)
+		argc = 1;
+		str1 = tmp;
+		for (; (t = strtok(str1, " \t\n")); argc++, str1 = NULL)
 			if (t == NULL)
 				break;
 		argv = askmem(++argc + 2, myline);
@@ -82,7 +86,7 @@ char *str1, *t, **argv, *line = NULL, *tmp = NULL, *myline = NULL, *PS1 = NULL;
  */
 char **askmem(int argc, char *myline)
 {
-char **argv;
+	char **argv;
 
 	argv = malloc((argc) * sizeof(char **));
 	if (argv == NULL)

@@ -2,8 +2,9 @@
 #include "strings.h"
 #include "operators.h"
 /**
- * _env - function enviroment
+ * logical_or - function enviroment
  * desc: print the enviroment
+ * @argc: the parameters
  * @argv: the parameters
  * @lenv: the enviroment list
  * @execnt: the counter

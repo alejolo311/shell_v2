@@ -28,6 +28,7 @@ int (*check_operator(char *operator))();
 int inputfile(int argc, char **argv, lenv_s **lenv, unsigned int *execnt);
 char **check_variable(char **argv, lenv_s **lenv);
 void get_ps1(char **PS1, lenv_s **lenv);
-int validate_multiple_args(int argc, char **argv, lenv_s **env, unsigned int *execnt);
+int validate_multiple_args(int argc, char **argv, lenv_s **env,
+							unsigned int *execnt);
 
 #endif /* H_VALIDATION */

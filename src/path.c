@@ -9,20 +9,21 @@
  */
 char *path(char *name, lenv_s **lenv)
 {
-unsigned int i;
-int j, k;
-char *str1, *token, *tmp = NULL, **env = menv(lenv);
-static char **paths, *pa;
+	unsigned int i;
+	int j, k;
+	char *s1, *token, *tmp = NULL, **env = menv(lenv);
+	static char **ps, *pa;
+
 	if (_strncmp(name, "FLUSH", 5) == 0)
-	{	free(pa), free(paths), free(env);
+	{	free(pa), free(ps), free(env);
 		return (NULL);
 	}
 	if (access(name, F_OK | R_OK | X_OK) == 0 &&
-			(name[0] == '/' || name[0] == '.'))
+		(name[0] == '/' || name[0] == '.'))
 	{	free(env);
 		return (_strdup(name));
 	}
-	if (paths == NULL)
+	if (ps == NULL)
 	{
 		for (i = 0; env[i] != NULL; i++)
 			if (_strncmp(env[i], "PATH", 4) == 0)
@@ -31,17 +32,17 @@ static char **paths, *pa;
 		{	free(env);
 			return (NULL);
 		} tmp = _strdup(env[i]);
-		for (k = 1, str1 = tmp; (token = strtok(str1, ":")); k++, str1 = NULL)
+		for (k = 1, s1 = tmp; (token = strtok(s1, ":")); k++, s1 = NULL)
 			if (token == NULL)
 				break;
-		free(tmp), pa = _strdup(env[i]), paths = malloc(k * sizeof(char **));
-		for (j = 0, str1 = (pa + 5); ; j++, str1 = NULL)
-		{	paths[j] = strtok(str1, ":");
-			if (paths[j] == NULL)
+		free(tmp), pa = _strdup(env[i]), ps = malloc(k * sizeof(char **));
+		for (j = 0, s1 = (pa + 5); ; j++, s1 = NULL)
+		{	ps[j] = strtok(s1, ":");
+			if (ps[j] == NULL)
 				break;	}
-	} for (k = 0; paths[k] != NULL; k++)
-	{	tmp = malloc((_strlen(paths[k]) + _strlen(name) + 2) * sizeof(char));
-		sprintf(tmp, "%s/%s", paths[k], name);
+	} for (k = 0; ps[k] != NULL; k++)
+	{	tmp = malloc((_strlen(ps[k]) + _strlen(name) + 2));
+		sprintf(tmp, "%s/%s", ps[k], name);
 		if (access(tmp, F_OK | R_OK | X_OK) == 0)
 		{	free(env);
 			return (tmp);

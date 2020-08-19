@@ -45,8 +45,9 @@ char **menv(lenv_s **head)
 	return (lenv);
 }
 /**
- * menv - this function convert a list to a doble pointer
- * @head: the head of list
+ * size_env - this function convert a list to a doble pointer
+ * @mode: the head of list
+ * @lenv: the head of list
  * Description: this converta list to a doble pointer.
  * section header: the header of this function is hsh.h
  * Return: the doble pointer.
@@ -57,34 +58,33 @@ int size_env(int mode, lenv_s **lenv)
 
 	if (mode == 1)
 	{
-	lenv_s *h = *lenv;
+		lenv_s *h = *lenv;
 
-	for (i = 0; h ; i++)
-	{
-		if (h->var == NULL)
-			;
-		else
+		for (i = 0; h ; i++)
 		{
-			size += _strlen(h->var);
+			if (h->var == NULL)
+				;
+			else
+			{
+				size += _strlen(h->var);
+				size += 1;
+			}
+			h = h->next;
+		}
+	}
+	else
+	{
+		for (i = 0; environ[i] != NULL; i++)
+		{
+			size += _strlen(environ[i]);
 			size += 1;
 		}
-		h = h->next;
-	}	
-	}
-	else 
-	{
-	for (i = 0; environ[i] != NULL; i++)
-	{
-		size += _strlen(environ[i]);
-		size += 1;
-	}
 	}
 	return (size);
-
 }
 /**
- * menv - this function convert a list to a doble pointer
- * @head: the head of list
+ * sincro_env - this function convert a list to a doble pointer
+ * @lenv: the head of list
  * Description: this converta list to a doble pointer.
  * section header: the header of this function is hsh.h
  * Return: the doble pointer.

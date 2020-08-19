@@ -9,7 +9,7 @@
 /**
  * check_operator - check if the input is a built-in
  * desc: check if the command in the inpit is a valid built-in
- * @builtin: the command to check
+ * @ope: the command to check
  * Return: -19 in exit case, 1 in success, 0 in no exec
  */
 int (*check_operator(char *ope))()
