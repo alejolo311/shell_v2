@@ -49,8 +49,6 @@ int interact(char **av, lenv_s **lenv, unsigned int *execnt)
 				break;
 		}
 		mul = validate_multiple_args(argc, argv, lenv, execnt);
-		if (mul != 0)
-			continue;
 		f = check_builtin(myline);
 		if (f != NULL)
 		{	builtin = f(argv, lenv, execnt);
@@ -66,7 +64,7 @@ int interact(char **av, lenv_s **lenv, unsigned int *execnt)
 			}
 			ret = builtin;
 		}
-		else
+		else if (mul == 0)
 			argc > 2 ? ret = myexec(j, argv, lenv, execnt) : argc;
 		addhist(argv), free(argv), free(tmp), free(myline), (*execnt)++;
 		if ((ret == 127 || ret == 126 || ret == 2) && inter == 0)
